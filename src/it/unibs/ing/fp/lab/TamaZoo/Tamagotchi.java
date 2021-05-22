@@ -130,6 +130,8 @@ public class Tamagotchi {
 		int n = getRandomInt();
 
 		this.gradoAffettivo +=  n;
+		
+		decrementaSazieta(n);
 
 		this.gradoAffettivo = maxPunteggio(this.gradoAffettivo, MAX_SODDISFAZIONE);
 		this.gradoSazieta = minPunteggio(this.gradoSazieta, MIN_SAZIETA);
@@ -143,6 +145,8 @@ public class Tamagotchi {
 	public void riceviCarezze( int n ) {
 
 		this.gradoAffettivo +=  n;
+		
+		decrementaSazieta(n);
 
 		this.gradoAffettivo = maxPunteggio(this.gradoAffettivo, MAX_SODDISFAZIONE);
 		this.gradoSazieta = minPunteggio(this.gradoSazieta, MIN_SAZIETA);
@@ -157,6 +161,8 @@ public class Tamagotchi {
 		int n = getRandomInt();
 		
 		this.gradoSazieta +=  n;
+		
+		decrementaSoddisfazione(n);
 
 		this.gradoSazieta = maxPunteggio(this.gradoSazieta, MAX_SAZIETA);
 		this.gradoAffettivo = minPunteggio(this.gradoAffettivo, MIN_SODDISFAZIONE);
@@ -170,9 +176,21 @@ public class Tamagotchi {
 	public void riceviBiscotti( int n ) {
 		
 		this.gradoSazieta +=  n;
+		
+		decrementaSoddisfazione(n);
 
 		this.gradoSazieta = maxPunteggio(this.gradoSazieta, MAX_SAZIETA);
 		this.gradoAffettivo = minPunteggio(this.gradoAffettivo, MIN_SODDISFAZIONE);
+	}
+	
+	public void decrementaSazieta(int n) {
+		
+		this.gradoSazieta -= (n/2);
+	}
+	
+	public void decrementaSoddisfazione( int n ) {
+		
+		this.gradoAffettivo -= (n/4);
 	}
 	
 	/**
@@ -235,6 +253,24 @@ public class Tamagotchi {
 			return TRISTE;
 		}
 	}
+	
+	
+
+	public double getGradoAffettivo() {
+		return gradoAffettivo;
+	}
+
+	public void setGradoAffettivo(double gradoAffettivo) {
+		this.gradoAffettivo = gradoAffettivo;
+	}
+
+	public double getGradoSazieta() {
+		return gradoSazieta;
+	}
+
+	public void setGradoSazieta(double gradoSazieta) {
+		this.gradoSazieta = gradoSazieta;
+	}
 
 	/**
 	 * Restituisce una rappresentazione leggibile di un oggetto della classe
@@ -249,4 +285,5 @@ public class Tamagotchi {
 		
 		return BelleStringhe.incorniciaECentra( s1 ) + BelleStringhe.centrata( s2 );
 	}
+
 }
