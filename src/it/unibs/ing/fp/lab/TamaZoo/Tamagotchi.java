@@ -19,9 +19,6 @@ public class Tamagotchi {
 	private static final int MAX_SODDISFAZIONE = 100;
 	private static final int MIN_SODDISFAZIONE = 0;
 	
-	private static final double PESO_SODDISFAZIONE = 0.65;
-	private static final double PESO_SAZIETA = 1 - PESO_SODDISFAZIONE;
-	
 	private static final String FELICE = ":)";
 	private static final String INDIFFERENTE = ":|";
 	private static final String TRISTE = ":(";
@@ -29,7 +26,6 @@ public class Tamagotchi {
 	private static final int TRISTEZZA_SAZIETA = 30;
 	private static final int TRISTEZZA_SODDISFAZIONE = 30;
 	private static final int TRISTEZZA_SAZIETA_MAX = 90;
-	private static final int DECREMENTO = 5;
 
 	private static final int MAX_AZIONE = 15;
 	private static final int MIN_AZIONE = 5;
@@ -219,15 +215,6 @@ public class Tamagotchi {
 
 		return false;
 	}
-	
-	/**
-	 * Questo metodo calcola un grado di benessere genarale facendo la media pesata del grado di soddisfazione e di sazietà
-	 * @return ritorna un valore double che rappresenta il benessere del tamagotchi
-	 */
-	private double getBenessere() {
-		
-		return this.gradoAffettivo * PESO_SODDISFAZIONE + this.gradoSazieta * PESO_SAZIETA;
-	}
 	 
 	/**
 	 * Questo metodo produce una stringa che rappresenta lo stato del tamagotchi in funzione del grado di benessere generale
@@ -235,11 +222,11 @@ public class Tamagotchi {
 	 */
 	private String felicita() {
 		
-		if(getBenessere() > 80 && this.gradoSazieta < TRISTEZZA_SAZIETA_MAX && this.gradoSazieta > TRISTEZZA_SAZIETA && this.gradoAffettivo > TRISTEZZA_SODDISFAZIONE) {
+		if( this.gradoSazieta < TRISTEZZA_SAZIETA_MAX && this.gradoSazieta > TRISTEZZA_SAZIETA && this.gradoAffettivo > TRISTEZZA_SODDISFAZIONE) {
 			
 			return FELICE;
 		}
-		else if( getBenessere() > 30  && this.gradoSazieta < TRISTEZZA_SAZIETA_MAX && this.gradoSazieta > TRISTEZZA_SAZIETA && this.gradoAffettivo > TRISTEZZA_SODDISFAZIONE) {
+		else if( this.gradoSazieta < TRISTEZZA_SAZIETA_MAX && this.gradoSazieta > TRISTEZZA_SAZIETA && this.gradoAffettivo > TRISTEZZA_SODDISFAZIONE) {
 			
 			return INDIFFERENTE;
 		}
@@ -258,7 +245,7 @@ public class Tamagotchi {
 	public String toString() {
 
 		String s1 = String.format("Sazietà: %.2f Soddisfazione: %.2f", this.gradoSazieta, this.gradoAffettivo);
-		String s2 = String.format("Benessere: %.2f\t\t%s\n", getBenessere(), felicita());
+		String s2 = String.format("Benessere: \t%s\n", felicita());
 		
 		return BelleStringhe.incorniciaECentra( s1 ) + BelleStringhe.centrata( s2 );
 	}
