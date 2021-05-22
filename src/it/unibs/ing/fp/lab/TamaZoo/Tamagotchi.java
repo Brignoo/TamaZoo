@@ -160,7 +160,10 @@ public class Tamagotchi {
 
 		int n = getRandomInt();
 		
-		this.gradoSazieta +=  n;
+		for( int i = 0; i < n; i++ ) {
+			
+			this.gradoSazieta += (this.gradoSazieta*0.1);
+		}
 		
 		decrementaSoddisfazione(n);
 
@@ -175,7 +178,10 @@ public class Tamagotchi {
 	 */
 	public void riceviBiscotti( int n ) {
 		
-		this.gradoSazieta +=  n;
+		for( int i = 0; i < n; i++ ) {
+			
+			this.gradoSazieta += (this.gradoSazieta*0.1);
+		}
 		
 		decrementaSoddisfazione(n);
 
@@ -238,7 +244,7 @@ public class Tamagotchi {
 	 * Questo metodo produce una stringa che rappresenta lo stato del tamagotchi in funzione del grado di benessere generale
 	 * @return ritorna la stringa che visualizza l'espressione
 	 */
-	private String felicita() {
+	public String felicita() {
 		
 		if( this.gradoSazieta < TRISTEZZA_SAZIETA_MAX && this.gradoSazieta > TRISTEZZA_SAZIETA && this.gradoAffettivo > TRISTEZZA_SODDISFAZIONE) {
 			
@@ -253,8 +259,6 @@ public class Tamagotchi {
 			return TRISTE;
 		}
 	}
-	
-	
 
 	public double getGradoAffettivo() {
 		return gradoAffettivo;
@@ -281,7 +285,7 @@ public class Tamagotchi {
 	public String toString() {
 
 		String s1 = String.format("Sazietà: %.2f Soddisfazione: %.2f", this.gradoSazieta, this.gradoAffettivo);
-		String s2 = String.format("Benessere: \t%s\n", felicita());
+		String s2 = String.format(felicita());
 		
 		return BelleStringhe.incorniciaECentra( s1 ) + BelleStringhe.centrata( s2 );
 	}
