@@ -25,11 +25,6 @@ public class Tamagotchi {
 	private static final String FELICE = ":)";
 	private static final String INDIFFERENTE = ":|";
 	private static final String TRISTE = ":(";
-
-	private static final double VARIAZIONE_POSITIVA = 0.5;
-	private static final double VARIAZIONE_NEGATIVA = 0.3;
-	private static final double MAX_MOLTIPLICATORE = 1.0;
-	private static final double MIN_MOLTIPLICATORE = 0.0;
 	
 	private static final int TRISTEZZA_SAZIETA = 30;
 	private static final int TRISTEZZA_SODDISFAZIONE = 30;
@@ -51,14 +46,6 @@ public class Tamagotchi {
 	 * Indica il <strong>nome</strong> del Tamagotchi
 	 */
 	private String nome;
-	/**
-	 * Indica il <strong>moltiplicatore di sazietà</strong> che viene applicato al numero di biscotti che l'utente decide di dare al Tamagotchi 
-	 */
-	private double punti_biscotto;
-	/**
-	 * Indica il <strong>moltiplicatore di carezze</strong> che viene applicato al numero di carezze che l'utente decide di dare al Tamagotchi 
-	 */
-	private double punti_carezza;
 	
 	/**
 	 * Crea un oggetto della classe <strong>Tamagotchi</strong> specificando il
@@ -74,8 +61,6 @@ public class Tamagotchi {
 		this.nome = nome;
 		this.gradoAffettivo = soddisfazione;
 		this.gradoSazieta = sazieta;
-		this.punti_carezza = MAX_MOLTIPLICATORE;
-		this.punti_biscotto = MAX_MOLTIPLICATORE;
 		
 		if ( !controlloValori() ) {
 			
@@ -148,17 +133,10 @@ public class Tamagotchi {
 
 		int n = getRandomInt();
 
-		this.gradoAffettivo +=  n * this.punti_carezza;
-		this.gradoSazieta -= DECREMENTO;
-
-		this.punti_biscotto = aumentaPunteggio(this.punti_biscotto);
-		this.punti_carezza = diminuisciPunteggio(this.punti_carezza);
+		this.gradoAffettivo +=  n;
 
 		this.gradoAffettivo = maxPunteggio(this.gradoAffettivo, MAX_SODDISFAZIONE);
 		this.gradoSazieta = minPunteggio(this.gradoSazieta, MIN_SAZIETA);
-
-		this.punti_biscotto = maxPunteggio(this.punti_biscotto, MAX_MOLTIPLICATORE);
-		this.punti_carezza = minPunteggio(this.punti_carezza, MIN_MOLTIPLICATORE);
 	}
 	
 	/**
@@ -168,17 +146,10 @@ public class Tamagotchi {
 	 */
 	public void riceviCarezze( int n ) {
 
-		this.gradoAffettivo +=  n * this.punti_carezza;
-		this.gradoSazieta -= DECREMENTO;
-
-		this.punti_biscotto = aumentaPunteggio(this.punti_biscotto);
-		this.punti_carezza = diminuisciPunteggio(this.punti_carezza);
+		this.gradoAffettivo +=  n;
 
 		this.gradoAffettivo = maxPunteggio(this.gradoAffettivo, MAX_SODDISFAZIONE);
 		this.gradoSazieta = minPunteggio(this.gradoSazieta, MIN_SAZIETA);
-
-		this.punti_biscotto = maxPunteggio(this.punti_biscotto, MAX_MOLTIPLICATORE);
-		this.punti_carezza = minPunteggio(this.punti_carezza, MIN_MOLTIPLICATORE);
 	}
 	
 	/**
@@ -189,17 +160,10 @@ public class Tamagotchi {
 
 		int n = getRandomInt();
 		
-		this.gradoSazieta +=  n * this.punti_biscotto;
-		this.gradoAffettivo -= DECREMENTO;
-
-		this.punti_carezza = aumentaPunteggio(this.punti_carezza);
-		this.punti_biscotto = diminuisciPunteggio(this.punti_biscotto);
+		this.gradoSazieta +=  n;
 
 		this.gradoSazieta = maxPunteggio(this.gradoSazieta, MAX_SAZIETA);
 		this.gradoAffettivo = minPunteggio(this.gradoAffettivo, MIN_SODDISFAZIONE);
-
-		this.punti_carezza = maxPunteggio(this.punti_carezza, MAX_MOLTIPLICATORE);
-		this.punti_biscotto = minPunteggio(this.punti_biscotto, MIN_MOLTIPLICATORE);
 	}
 
 	/**
@@ -209,39 +173,10 @@ public class Tamagotchi {
 	 */
 	public void riceviBiscotti( int n ) {
 		
-		this.gradoSazieta +=  n * this.punti_biscotto;
-		this.gradoAffettivo -= DECREMENTO;
-
-		this.punti_carezza = aumentaPunteggio(this.punti_carezza);
-		this.punti_biscotto = diminuisciPunteggio(this.punti_biscotto);
+		this.gradoSazieta +=  n;
 
 		this.gradoSazieta = maxPunteggio(this.gradoSazieta, MAX_SAZIETA);
 		this.gradoAffettivo = minPunteggio(this.gradoAffettivo, MIN_SODDISFAZIONE);
-
-		this.punti_carezza = maxPunteggio(this.punti_carezza, MAX_MOLTIPLICATORE);
-		this.punti_biscotto = minPunteggio(this.punti_biscotto, MIN_MOLTIPLICATORE);
-	}
-	
-	/** 
-	 * Aumenta il valore del moltiplicatore di sazietà o soddisfazione (necessario per diminuire l'effetto di azioni ripetute)
-	 * 
-	 * @param aumenta Valore di tipo <code>double</code> corrispondente al moltiplicatore prima della variazione
-	 * @return Esegue un return del valore aumentato del moltiplicatore
-	 */
-	private double aumentaPunteggio(double aumenta){
-
-		 return aumenta + VARIAZIONE_POSITIVA;
-	}
-
-	/** 
-	 * Diminuisce il valore del moltiplicatore di sazietà o soddisfazione (necessario per diminuire l'effetto di azioni ripetute)
-	 * 
-	 * @param diminuisci Valore di tipo <code>double</code> corrispondente al moltiplicatore prima della variazione
-	 * @return Esegue un return del valore diminuito del moltiplicatore
-	 */
-	private double diminuisciPunteggio(double diminuisci){
-
-		return diminuisci - VARIAZIONE_NEGATIVA;
 	}
 	
 	/**

@@ -6,5 +6,10 @@ public class Tamatriste extends Tamagotchi{
 		super(nome, soddisfazione, sazieta);
 		// TODO Auto-generated constructor stub
 	}
+	
+	@Override
+	public void riceviCarezze() {
+		
+	}
 
 }
