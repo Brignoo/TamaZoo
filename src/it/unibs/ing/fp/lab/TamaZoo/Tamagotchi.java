@@ -189,11 +189,19 @@ public class Tamagotchi {
 		this.gradoAffettivo = minPunteggio(this.gradoAffettivo, MIN_SODDISFAZIONE);
 	}
 	
+	/**
+	 * Metodo per decrementare la sazietà
+	 * @param n tirona il nuovo valore di sazietà decrementato
+	 */
 	public void decrementaSazieta(int n) {
 		
 		this.gradoSazieta -= (n/2);
 	}
 	
+	/**
+	 * Metodo per decrementare la soddisfazione
+	 * @param n tirona il nuovo valore di soddisfazione decrementato
+	 */
 	public void decrementaSoddisfazione( int n ) {
 		
 		this.gradoAffettivo -= (n/4);
@@ -260,18 +268,34 @@ public class Tamagotchi {
 		}
 	}
 
+	/**
+	 * Metodo per ottenere il grado affettivo di un tamagotchi
+	 * @return ritorna il grado affettivo del tamagotchi
+	 */
 	public double getGradoAffettivo() {
 		return gradoAffettivo;
 	}
 
+	/**
+	 * Metodo per modificare il grado affettivo di un tamagotchi
+	 * @param gradoAffettivo nuovo grado affettivo del tamagotchi
+	 */
 	public void setGradoAffettivo(double gradoAffettivo) {
 		this.gradoAffettivo = gradoAffettivo;
 	}
 
+	/**
+	 * Metodo per ottenere il grado di sazietà di un tamagotchi
+	 * @return ritorna il grado di sazietà del tamagotchi
+	 */
 	public double getGradoSazieta() {
 		return gradoSazieta;
 	}
 
+	/**
+	 * Metodo per modificare il grado di sazietà
+	 * @param gradoSazieta nuovo grado di sazietà
+	 */
 	public void setGradoSazieta(double gradoSazieta) {
 		this.gradoSazieta = gradoSazieta;
 	}
