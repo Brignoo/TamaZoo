@@ -1,10 +1,13 @@
 package it.unibs.ing.fp.lab.TamaZoo;
 
 import java.util.ArrayList;
-
 import it.unibs.ing.fp.lab.mylib.EstrazioniCasuali;
 import it.unibs.ing.fp.lab.mylib.MyInputDati;
 
+/**
+ * Classe main di TamaZoo
+ *
+ */
 public class TamaMain {
 	
 	private static final String SALUTO = "Benvenuto nel Tamazoo\n\n";
@@ -72,12 +75,12 @@ public class TamaMain {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Tamagotchi> tamazoo = new ArrayList<Tamagotchi>();
+		ArrayList<Tamagotchi> tamaZoo = new ArrayList<Tamagotchi>();
 		int num;
 		String nome;
 		
 		saluta();
-		popolaLista(tamazoo);
+		popolaLista(tamaZoo);
 		
 		
 		
