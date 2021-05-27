@@ -9,10 +9,18 @@ public class TamaGordo extends Tamagotchi{
 	private static final String FELICE = ":)";
 	private static final String TRISTE = ":(";
 
+	/** Costruttore della classe TamaGordo
+	 * @param nome il nome che avrà il <em>Tamagotchi</em> il nuovo aggetto
+	 * @param sazieta il valore di sazietà iniziale che avrà questa istanza
+	 */
 	public TamaGordo(String nome, double sazieta) {
 		super(nome, SODDISFAZIONE, sazieta);
 	}
 	
+	
+	/** Questo metodo decrementa la sazietà del <em>Tamagotchi</em>
+	 * @param n parametro che viene utilizzato per decrementare l'attuale grado di sazietà
+	 */
 	@Override
 	public void decrementaSazieta( int n) {
 		
@@ -22,11 +30,24 @@ public class TamaGordo extends Tamagotchi{
 		super.setGradoSazieta( q );
 	}
 	
+	
+	/** Viene fatto un'overraide di questo metodo per evitare di decrementare la soddisfazione
+	 * @param n Questo parametro serve per effettuare l'override del metodo nella classe <em>Tamagotchi.java</em>
+	 */
 	@Override
 	public void decrementaSoddisfazione( int n) {
 		
 	}
 	
+	
+	/**
+	 * Questa funzione viene utilizzate per controllare se il <em>Tamagotchi</em>
+	 *  felice o triste.
+	 * 
+	 * @return Esegue un return di tipo <code>boolean</code> che sarà
+	 *  <em>vero</em> se il <em>Tamagotchi</em> risulta triste,
+	 *  <em>falso</em> se felice.
+	 */
 	@Override
 	public boolean sonoTriste() {
 		
@@ -38,6 +59,11 @@ public class TamaGordo extends Tamagotchi{
 		return false;
 	}
 	
+	
+	/**
+	 * Questo metodo produce una stringa che rappresenta lo stato del tamagotchi in funzione del grado di benessere generale
+	 * @return String ritorna la stringa che visualizza l'espressione
+	 */
 	@Override
 	public String felicita() {
 		
@@ -49,6 +75,13 @@ public class TamaGordo extends Tamagotchi{
 		return FELICE;
 	}
 	
+	
+	/**
+	 * Restituisce una rappresentazione leggibile di un oggetto della classe
+	 * <strong>TamaGordo</strong>
+	 * 
+	 * @return Una <code>String</co de> che rappresenta un <strong>TamaGordo</strong>
+	 */
 	@Override
 	public boolean sonoMorto( ) {
 
