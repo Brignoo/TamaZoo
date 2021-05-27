@@ -1,10 +1,13 @@
 package it.unibs.ing.fp.lab.TamaZoo;
 
 import java.util.ArrayList;
-
 import it.unibs.ing.fp.lab.mylib.EstrazioniCasuali;
 import it.unibs.ing.fp.lab.mylib.MyInputDati;
 
+/**
+ * Classe main di TamaZoo
+ *
+ */
 public class TamaMain {
 	
 	private static final String SALUTO = "Benvenuto nel Tamazoo\n\n";
@@ -22,6 +25,12 @@ public class TamaMain {
 		System.out.println(SALUTO);
 	}
 	
+	/**
+	 * Metodo per la creazione di un nuovo Tamagotchi con scelta casuale del tipo e determinazione 
+	 * casuale dei valori di sazietà e soddisfazione
+	 * @param nome nome del tamagotchi
+	 * @return ritorna il nuovo tamagotchi
+	 */
 	private static Tamagotchi creaTamagotchi(String nome) {
 		
 		Tamagotchi t = null;
@@ -46,6 +55,11 @@ public class TamaMain {
 		return t;
 	}
 	
+	/**
+	 * Metodo per popolare le lista di Tamagotchi, a partire dal numero di tamagotchi
+	 * li aggiunge alla lista con il nome scelto dall'utente
+	 * @param tamazoo
+	 */
 	private static void popolaLista( ArrayList<Tamagotchi> tamazoo) {
 		
 		String nome;
@@ -61,12 +75,12 @@ public class TamaMain {
 
 	public static void main(String[] args) {
 		
-		ArrayList<Tamagotchi> tamazoo = new ArrayList<Tamagotchi>();
+		ArrayList<Tamagotchi> tamaZoo = new ArrayList<Tamagotchi>();
 		int num;
 		String nome;
 		
 		saluta();
-		popolaLista(tamazoo);
+		popolaLista(tamaZoo);
 		
 		
 		
