@@ -115,7 +115,6 @@ public class TamaMain {
 		if( !tamaZoo.isEmpty() ) {
 						
 			tamaZoo.removeIf(t -> t.sonoMorto());
-
 		}
 	}
 
