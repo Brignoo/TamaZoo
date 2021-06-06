@@ -28,7 +28,7 @@ public class Tamagotchi {
 	private static final int TRISTEZZA_SODDISFAZIONE = 30;
 	private static final int TRISTEZZA_SAZIETA_MAX = 90;
 
-	private static final int MAX_AZIONE = 15;
+	private static final int MAX_AZIONE = 10;
 	private static final int MIN_AZIONE = 5;
 
 	/**

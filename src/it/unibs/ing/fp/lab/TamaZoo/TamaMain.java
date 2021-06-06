@@ -7,6 +7,7 @@ import java.util.Scanner;
 import it.unibs.ing.fp.lab.mylib.BelleStringhe;
 import it.unibs.ing.fp.lab.mylib.EstrazioniCasuali;
 import it.unibs.ing.fp.lab.mylib.MyInputDati;
+import it.unibs.ing.fp.lab.mylib.MyMenu;
 
 /**
  * Classe main di TamaZoo
@@ -18,6 +19,11 @@ public class TamaMain {
 	private static final String NUMERO_TAMAGOTCHI = "Quanti tamagotchi vuoi aggiungere? ";
 	private static final String INSERIMENTO_TAMAGOTCHI = "Inserisci il nome del tuo tamagotchi: ";
 	private static final String FINE_PER_MORTE = "Tutti i tamagotchi sono morti";
+	
+	private static final String TITOLO = "TAMAZOO";
+	private static final String VOCE_1 = "Accarezza";
+	private static final String VOCE_2 = "Nutri";
+	private static final String[] MENU = { VOCE_1, VOCE_2 };
 
 	private static final int MINIMO_NUM_TAMAGOTCHI = 1;
 	private static final int MINIMO_ESTRAZIONE = 0;
@@ -67,7 +73,7 @@ public class TamaMain {
 	 * 
 	 * @param tamazoo
 	 */
-	private static void popolaLista(ArrayList<Tamagotchi> tamazoo) {
+	private static void popolaLista(ArrayList<Tamagotchi> tamaZoo) {
 
 		String nome;
 		int num;
@@ -76,57 +82,86 @@ public class TamaMain {
 		for (int i = 0; i < num; i++) {
 
 			nome = MyInputDati.leggiStringa(INSERIMENTO_TAMAGOTCHI);
-			tamazoo.add(creaTamagotchi(nome));
+			tamaZoo.add(creaTamagotchi(nome));
+		}
+		
+		stampa(tamaZoo);
+	}
+	
+	/**
+	 * Metodo per la stampa dell'ArrayList di Tamagotchi
+	 * @param tamaZoo ArrayList di Tamagotchi di cui eseguire la stampa
+	 */
+	private static void stampa(ArrayList<Tamagotchi> tamaZoo) {
+		
+		if( !tamaZoo.isEmpty() ) {
+			
+			System.out.println();
+			
+			for (Tamagotchi t : tamaZoo) {
+
+				System.out.println(t.toString() + "\n");
+				
+			}
+		}
+	}
+	
+	/**
+	 * Metodo per la rimozione dei Tamagotchi morti
+	 * @param tamaZoo ArrayList di Tamagotchi da cui elieminare gli elementi
+	 */
+	private static void eliminaMorti(ArrayList<Tamagotchi> tamaZoo) {
+		
+		if( !tamaZoo.isEmpty() ) {
+						
+			tamaZoo.removeIf(t -> t.sonoMorto());
+
 		}
 	}
 
 	public static void main(String[] args) {
 
+		boolean esci = false;
+		int scelta;
+		MyMenu m = new MyMenu(TITOLO, MENU);
+		
 		ArrayList<Tamagotchi> tamaZoo = new ArrayList<Tamagotchi>();
 
 		saluta();
 		popolaLista(tamaZoo);
+		
+		do{
 
-		boolean esci = false;
-		Scanner s = new Scanner(System.in);
-
-		while (!esci) {
-			// out.... scegli un'opzione lista opzioni
-			System.out.println("Scegli un'opzione\n0:Esci\n1: Carezze\n2: Biscotti");
-			int scelta = s.nextInt();
-
+			scelta = m.scegli();
+			
 			switch (scelta) {
-				case 0:
-					esci = true;
-					break;
-				case 1:
-					tamaZoo.forEach((t) -> {
-						t.riceviBiscotti();
-					});
-					break;
-				case 2:
-					tamaZoo.forEach((t) -> {
-						t.riceviCarezze();
-					});
-					break;
+			
+			case 1:
+				tamaZoo.forEach((t) -> {
+					t.riceviCarezze();
+				});
+				break;
+				
+			case 2:
+				tamaZoo.forEach((t) -> {
+					t.riceviBiscotti();
+				});
+				break;
+				
+			case 0:
+				esci = true;
+				break;
 			}
-
-			for (Iterator<Tamagotchi> iter = tamaZoo.iterator(); iter.hasNext();) {
-				Tamagotchi t = iter.next();
-
-				if (t.sonoMorto())
-					iter.remove();
-				else
-					System.out.println(t.toString());
-			}
+			
+			eliminaMorti(tamaZoo);
+			stampa(tamaZoo);
 
 			if (tamaZoo.size() == 0) {
+				
 				esci = true;
-				System.out.println(BelleStringhe.incorniciaECentra(FINE_PER_MORTE) + BelleStringhe.centrata(":("));
+				System.out.println( BelleStringhe.incorniciaECentra(FINE_PER_MORTE) + BelleStringhe.centrata(":(") );
 			}
-		}
-
-		s.close();
+			
+		} while(!esci);
 	}
-
 }
