@@ -1,5 +1,8 @@
 package it.unibs.ing.fp.lab.TamaZoo;
 
+/**
+ * Classe Tamagordo, Tamagotchi che pensano solamente al cibo. La loro soddisfazione è sempre massima.
+ */
 public class TamaGordo extends Tamagotchi{
 	
 	private static final int SODDISFAZIONE = 100;

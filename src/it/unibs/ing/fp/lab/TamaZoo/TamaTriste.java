@@ -1,5 +1,8 @@
 package it.unibs.ing.fp.lab.TamaZoo;
 
+/**
+ * Classe Tamatriste, Tamagotchi sempre tristi indipendentemente dai valori di soddifazione e sazietà.
+ */
 public class TamaTriste extends Tamagotchi{
 	
 	private static final int MAX_SAZIETA = 100;
