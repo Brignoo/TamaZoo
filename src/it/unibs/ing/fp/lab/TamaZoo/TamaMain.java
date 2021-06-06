@@ -81,7 +81,7 @@ public class TamaMain {
 
 		for (int i = 0; i < num; i++) {
 
-			nome = MyInputDati.leggiStringa(INSERIMENTO_TAMAGOTCHI);
+			nome = MyInputDati.leggiStringaAlfaNumerica(INSERIMENTO_TAMAGOTCHI);
 			tamaZoo.add(creaTamagotchi(nome));
 		}
 		
